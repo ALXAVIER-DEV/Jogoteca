@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 
+# Melhor trabalhar com classes
 
 class Game:
     def __init__(self, name, category, console):
