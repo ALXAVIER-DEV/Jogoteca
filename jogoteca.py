@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/init')
 def hello():
-
+     #____#
     jogos_data = [
         ("DOOM (1993)", "Clássico / Boomer Shooter", "PC (MS-DOS)"),
         ("DOOM (2016)", "Ação / Single-player", "Multiplataforma (PC/PS4/XOne)"),
