@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
+from unicodedata import category
+
 
 # Melhor trabalhar com classes
 
@@ -8,13 +10,7 @@ class Game:
         self.category = category
         self.console = console
 
-
-app = Flask(__name__)
-
-@app.route('/init')
-def hello():
-     #____#
-    jogos_data = [
+games_data = [
         ("DOOM (1993)", "Clássico / Boomer Shooter", "PC (MS-DOS)"),
         ("DOOM (2016)", "Ação / Single-player", "Multiplataforma (PC/PS4/XOne)"),
         ("DOOM Eternal", "Ação / Single-player", "Multiplataforma (PC/PS4/PS5/XOne/XSX/Switch)"),
@@ -99,12 +95,27 @@ def hello():
         ("Verdun", "Militar / Primeira Guerra", "Multiplataforma (PC/PS/Xbox)"),
         ("Tannenberg", "Militar / Primeira Guerra", "Multiplataforma (PC/PS/Xbox)"),
     ]
-    games = [Game(name, category, console) for (name, category, console) in jogos_data]
-    return render_template('lista.html', title='Games', games=games)
+
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+     #____#
+
+    games = [Game(name, category, console) for (name, category, console) in games_data]
+    return render_template('list.html', title='Games', games=games)
 
 @app.route('/new')
 def new():
     return render_template('new.html',titulo='New Game')
 
-
-app.run(host='0.0.0.0', port=8080)
+@app.route('/create',methods=['POST',])
+def create():
+    name     = request.form['name']
+    category = request.form['category']
+    console  = request.form['console']
+    game     = Game(name, category, console)
+    games_data.append(game)
+    return redirect('/')
+app.run(host='0.0.0.0', port=8080,debug=True)

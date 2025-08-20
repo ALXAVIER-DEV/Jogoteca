@@ -8,23 +8,23 @@
 <body>
     <div class="container">
       <div class="page-header">
-          <h1>{{ titulo }}</h1>
+          <h1>{{ tytle }}</h1>
       </div>
-      <form>
+      <form action="/create" method="post">
         <fieldset>
           <div class="form-group">
-            <label for="nome">Nome</label>
+            <label for="nome">Name</label>
             <input type="text" id="nome" name="nome" class="form-control">
           </div>
           <div class="form-group">
-            <label for="categoria">Categoria</label>
+            <label for="categoria">Category</label>
             <input type="text" id="categoria" name="categoria" class="form-control">
           </div>
           <div class="form-group">
             <label for="console">Console</label>
             <input type="text" id="console" name="console" class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+          <button type="submit" class="btn btn-primary btn-salvar">Save</button>
         </fieldset>
       </form>
     </div>
